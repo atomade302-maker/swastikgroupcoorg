@@ -1447,11 +1447,13 @@ ul {
         background: var(--darker);
         flex-direction: column;
         align-items: center;
-        justify-content: center;
-        gap: 30px;
+        justify-content: flex-start;
+        overflow-y: auto;
+        gap: 25px;
         transition: all 0.3s ease;
         z-index: 999;
-        padding-bottom: 80px;
+        padding-top: 40px;
+        padding-bottom: 40px;
         border-top: 1px solid rgba(255,255,255,0.05);
     }
 
@@ -3402,11 +3404,13 @@ ul {
         background: var(--darker);
         flex-direction: column;
         align-items: center;
-        justify-content: center;
-        gap: 40px;
+        justify-content: flex-start;
+        overflow-y: auto;
+        gap: 30px;
         transition: var(--transition);
         z-index: 999;
-        padding-bottom: 80px;
+        padding-top: 40px;
+        padding-bottom: 40px;
         border-top: 1px solid rgba(255,255,255,0.05);
     }
     
@@ -3494,9 +3498,23 @@ ul {
         grid-row: span 1;
     }
     
-    .lightbox-prev,
-#site-resort .lightbox-next {
-        display: none;
+    #site-resort .lightbox-prev {
+        left: 10px;
+        display: flex !important;
+    }
+    #site-resort .lightbox-next {
+        right: 10px;
+        display: flex !important;
+    }
+    #site-resort .lightbox-arrow {
+        background: rgba(0, 0, 0, 0.75);
+        border: 1px solid rgba(255, 255, 255, 0.25);
+        width: 44px;
+        height: 44px;
+        font-size: 1rem;
+    }
+    #site-resort .room-slideshow {
+        height: 260px;
     }
 }
 

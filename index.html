@@ -1087,7 +1087,7 @@ function switchSite(name) {
 
 
     <!-- Header / Navigation -->
-    <header class="navbar" id="navbar">
+    <header class="navbar" id="resortNavbar">
         <div class="container nav-container">
             <a href="#" class="logo">
                 <div class="logo-icon">
@@ -1099,17 +1099,17 @@ function switchSite(name) {
                 </div>
             </a>
             
-            <nav class="nav-links" id="navLinks">
+            <nav class="nav-links" id="resortNavLinks">
                 <a href="#home" class="active">Home</a>
                 <a href="#about">About</a>
                 <a href="#accommodations">Stay</a>
                 <a href="#activities">Activities</a>
                 <a href="#gallery">Gallery</a>
                 <a href="#book" class="nav-btn">Enquire & Book</a>
-                <a href="javascript:void(0)" class="nav-contact-btn contact-trigger-btn">CONTACT US</a>
+                <a href="javascript:void(0)" class="nav-contact-btn resort-contact-trigger-btn">CONTACT US</a>
             </nav>
 
-            <button class="mobile-toggle" id="mobileToggle">
+            <button class="mobile-toggle" id="resortMobileToggle">
                 <i class="fa-solid fa-bars"></i>
             </button>
         </div>
@@ -1643,7 +1643,7 @@ function switchSite(name) {
 
         // Sticky Navbar Scrolled effect
         window.addEventListener('scroll', () => {
-            const navbar = document.getElementById('navbar');
+            const navbar = document.getElementById('resortNavbar');
             if (window.scrollY > 50) {
                 navbar.classList.add('scrolled');
             } else {
@@ -1652,8 +1652,8 @@ function switchSite(name) {
         });
 
         // Mobile Nav Menu Toggle
-        const mobileToggle = document.getElementById('mobileToggle');
-        const navLinks = document.getElementById('navLinks');
+        const mobileToggle = document.getElementById('resortMobileToggle');
+        const navLinks = document.getElementById('resortNavLinks');
         
         mobileToggle.addEventListener('click', () => {
             navLinks.classList.toggle('active');
@@ -1668,7 +1668,7 @@ function switchSite(name) {
         });
 
         // Close Mobile Menu on Nav link click
-        document.querySelectorAll('.nav-links a').forEach(link => {
+        document.querySelectorAll('#resortNavLinks a').forEach(link => {
             link.addEventListener('click', () => {
                 navLinks.classList.remove('active');
                 mobileToggle.querySelector('i').classList.remove('fa-xmark');
@@ -1677,8 +1677,8 @@ function switchSite(name) {
         });
 
         // Active Link Highlighter on scroll
-        const sections = document.querySelectorAll('section');
-        const navItems = document.querySelectorAll('.nav-links a');
+        const sections = document.querySelectorAll('#site-resort section');
+        const navItems = document.querySelectorAll('#resortNavLinks a');
 
         window.addEventListener('scroll', () => {
             let current = '';
@@ -1856,9 +1856,9 @@ function switchSite(name) {
 
         // Contact Modal Logic
         document.addEventListener('DOMContentLoaded', () => {
-            const contactModal = document.getElementById('contactModal');
-            const closeContactModal = document.getElementById('closeContactModal');
-            const contactTriggers = document.querySelectorAll('.contact-trigger-btn');
+            const contactModal = document.getElementById('resortContactModal');
+            const closeContactModal = document.getElementById('resortCloseContactModal');
+            const contactTriggers = document.querySelectorAll('.resort-contact-trigger-btn');
 
             if (contactTriggers && contactModal && closeContactModal) {
                 contactTriggers.forEach(btn => {
@@ -1882,9 +1882,9 @@ function switchSite(name) {
     </script>
 
     <!-- CONTACT MODAL -->
-    <div class="contact-modal-overlay" id="contactModal">
+    <div class="contact-modal-overlay" id="resortContactModal">
         <div class="contact-modal-content">
-            <button class="contact-modal-close" id="closeContactModal"><i class="fa-solid fa-xmark"></i></button>
+            <button class="contact-modal-close" id="resortCloseContactModal"><i class="fa-solid fa-xmark"></i></button>
             <div class="contact-modal-header">
                 <i class="fa-solid fa-phone-volume contact-modal-icon"></i>
                 <h3>Contact Swastiks Balaji Homestay</h3>
