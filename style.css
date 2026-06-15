@@ -182,19 +182,19 @@ ul {
 .helpline {
     display: flex;
     align-items: center;
-    gap: 15px;
+    gap: 10px;
 }
 
 .helpline-icon {
-    width: 40px;
-    height: 40px;
+    width: 36px;
+    height: 36px;
     background-color: var(--primary);
     color: var(--white);
     display: flex;
     align-items: center;
     justify-content: center;
     border-radius: 50%;
-    font-size: 1.1rem;
+    font-size: 1rem;
 }
 
 .helpline-text {
@@ -204,14 +204,15 @@ ul {
 }
 
 .helpline-title {
-    font-size: 0.75rem;
+    font-size: 0.68rem;
     font-weight: 700;
     color: var(--white);
     letter-spacing: 1px;
+    opacity: 0.8;
 }
 
 .helpline-number {
-    font-size: 1rem;
+    font-size: 0.9rem;
     font-weight: 700;
     color: var(--white);
 }
@@ -277,7 +278,7 @@ ul {
 
 .nav-links {
     display: flex;
-    gap: 25px;
+    gap: 18px;
 }
 
 .nav-links a {
@@ -312,13 +313,14 @@ ul {
 .helpline-numbers {
     display: flex;
     align-items: center;
-    gap: 8px;
+    gap: 6px;
     margin-top: 4px;
+    white-space: nowrap;
 }
 
 .helpline-separator {
     color: rgba(255, 255, 255, 0.4);
-    font-size: 0.9rem;
+    font-size: 0.8rem;
 }
 
 /* Hero Section - Split Layout */
@@ -1683,6 +1685,130 @@ ul {
 }
 
 /* ============================================================
+   TAXI CALLOUT BADGE (LEFT SIDE)
+============================================================ */
+.taxi-callout-badge {
+    position: fixed;
+    left: 15px;
+    top: calc(50% + 190px);
+    transform: translateY(-50%);
+    background: linear-gradient(135deg, #ffd700, #ff8c00);
+    color: #000;
+    padding: 10px 18px;
+    border-radius: 30px;
+    font-size: 0.85rem;
+    font-weight: 700;
+    white-space: nowrap;
+    box-shadow: 0 4px 15px rgba(255, 215, 0, 0.4);
+    z-index: 1000;
+    cursor: pointer;
+    border: 2px solid rgba(0, 0, 0, 0.1);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    animation: leftBubblePulse 2s infinite;
+}
+
+.taxi-callout-badge:hover {
+    transform: translateY(-50%) scale(1.05);
+    box-shadow: 0 8px 25px rgba(255, 215, 0, 0.6);
+    background: linear-gradient(135deg, #ff8c00, #ffd700);
+}
+
+@keyframes leftBubblePulse {
+    0%, 100% { transform: translateY(-50%) scale(1); }
+    50% { transform: translateY(-50%) scale(1.03); }
+}
+
+/* ============================================================
+   TAXI WIDGET (LEFT POP-OUT)
+============================================================ */
+.taxi-widget {
+    position: fixed;
+    left: 0;
+    top: 50% !important;
+    transform: translateY(-50%) translateX(calc(-100% + 60px));
+    display: flex;
+    align-items: stretch;
+    background: var(--darker);
+    border: 2px solid #ffd700;
+    border-left: none;
+    border-radius: 0 12px 12px 0;
+    z-index: 999;
+    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 5px 10px 30px rgba(0,0,0,0.5);
+    cursor: pointer;
+}
+
+.taxi-widget:hover {
+    transform: translateY(-50%) translateX(0);
+}
+
+.taxi-tab {
+    writing-mode: vertical-rl;
+    padding: 25px 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    color: var(--white);
+    font-family: 'Bebas Neue', sans-serif;
+    letter-spacing: 2px;
+}
+
+.taxi-tab-sub {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.65rem;
+    color: #aaa;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+.taxi-tab-title {
+    font-size: 1.5rem;
+    color: #ffd700;
+    white-space: nowrap;
+}
+
+.taxi-icon {
+    color: #ffd700;
+    font-size: 1rem;
+    margin-top: 10px;
+    animation: bounceLeft 1.5s infinite;
+}
+
+.taxi-widget:hover .taxi-icon {
+    transform: rotate(180deg);
+    animation: none;
+    margin-top: 0;
+    margin-bottom: 10px;
+}
+
+.taxi-img-wrap {
+    width: 320px;
+    height: 220px;
+    overflow: hidden;
+    border-right: 1px solid #333;
+}
+
+.taxi-img-wrap img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.taxi-widget:hover .taxi-img-wrap img {
+    transform: scale(1.08);
+}
+
+@keyframes bounceLeft {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-6px); }
+}
+
+/* ============================================================
    QUOTE MODAL
 ============================================================ */
 .quote-modal-overlay {
@@ -1767,12 +1893,12 @@ ul {
 .nav-links a.nav-contact-btn {
     background: linear-gradient(135deg, var(--primary) 0%, #ff6a00 100%);
     color: var(--white) !important;
-    padding: 8px 18px;
+    padding: 6px 14px;
     border-radius: 50px;
     box-shadow: 0 4px 15px rgba(255, 106, 0, 0.4);
     animation: pulseGlow 2s infinite;
     font-weight: 700;
-    margin-left: 10px;
+    margin-left: 5px;
     display: inline-block;
     align-self: center;
 }
@@ -3386,7 +3512,7 @@ ul {
         font-size: 4rem;
     }
     
-    .about-grid,
+    #site-resort .about-grid,
 #site-resort .book-grid {
         grid-template-columns: 1fr;
         gap: 50px;
@@ -3540,6 +3666,9 @@ ul {
     }
     #site-resort .room-slideshow {
         height: 260px;
+    }
+    #site-resort .about-images-stack {
+        height: 280px !important;
     }
 }
 
@@ -3849,11 +3978,11 @@ ul {
    MOBILE OVERRIDES — FINAL CLEAN VERSION
 ============================================================ */
 
-/* mobile-helpline & mobileHotelBtn: hidden on desktop, shown in mobile menu */
+/* mobile-helpline & mobileHotelBtn & mobileTaxiBtn: hidden on desktop, shown in mobile menu */
 .mobile-helpline {
     display: none;
 }
-#mobileHotelBtn {
+#mobileHotelBtn, #mobileTaxiBtn {
     display: none;
 }
 
@@ -3885,14 +4014,27 @@ ul {
         transform: translateY(-50%) translateX(0) !important;
     }
 
+    .taxi-widget {
+        display: flex !important;
+        height: 160px !important;
+        width: auto !important;
+        transform: translateY(-50%) translateX(calc(-100% + 44px)) !important;
+    }
+    .taxi-widget:hover,
+    .taxi-widget:focus {
+        transform: translateY(-50%) translateX(0) !important;
+    }
+
     .hotel-tab,
+    .taxi-tab,
     #site-resort .group-tab {
         width: 44px !important;
         padding: 15px 10px !important;
     }
 
     /* Shorten the vertical tab text so it fits */
-    .hotel-tab-title {
+    .hotel-tab-title,
+    .taxi-tab-title {
         font-size: 1rem !important;
         letter-spacing: 1px !important;
         max-height: 100px;
@@ -3906,15 +4048,18 @@ ul {
     }
 
     .hotel-tab-sub,
+    .taxi-tab-sub,
     #site-resort .group-tab-sub {
         display: none !important;
     }
     .hotel-icon,
+    .taxi-icon,
     #site-resort .group-icon {
         font-size: 0.8rem !important;
         margin-top: 6px !important;
     }
     .hotel-img-wrap,
+    .taxi-img-wrap,
     #site-resort .group-img-wrap {
         width: 145px !important;
         height: 160px !important;
@@ -3923,7 +4068,7 @@ ul {
     /* --- Callout badges: move to bottom-right corner --- */
     .hotel-callout-badge,
     #site-resort .group-callout-badge {
-        display: flex !important;
+        display: flex;
         position: fixed !important;
         right: 16px !important;
         bottom: 24px !important;
@@ -3934,6 +4079,21 @@ ul {
         z-index: 1001 !important;
         animation: bubblePulseMobile 2.2s ease-in-out infinite !important;
         white-space: nowrap !important;
+    }
+    .taxi-callout-badge {
+        display: flex;
+        position: fixed !important;
+        left: 16px !important;
+        bottom: 24px !important;
+        top: auto !important;
+        transform: none !important;
+        font-size: 0.8rem !important;
+        padding: 9px 15px !important;
+        z-index: 1001 !important;
+        animation: bubblePulseMobile 2.2s ease-in-out infinite !important;
+        white-space: nowrap !important;
+        background: linear-gradient(135deg, #ffd700, #ff8c00) !important;
+        color: #000 !important;
     }
     #site-resort .group-callout-badge {
         animation: bubblePulseMobileGold 2.2s ease-in-out infinite !important;
@@ -3967,7 +4127,7 @@ ul {
         border-top: 1px solid rgba(255,255,255,0.1);
         width: 85%;
     }
-    #mobileHotelBtn {
+    #mobileHotelBtn, #mobileTaxiBtn {
         display: inline-flex !important;
         align-items: center;
         gap: 8px;
@@ -4013,6 +4173,38 @@ ul {
     }
     #site-resort .section-title {
         font-size: 2rem !important;
+    }
+
+    #site-resort .about-features {
+        grid-template-columns: 1fr !important;
+        gap: 20px !important;
+        margin: 25px 0 !important;
+    }
+    #site-resort .about-badge {
+        left: 10px !important;
+        bottom: 20px !important;
+        padding: 12px 20px !important;
+    }
+    #site-resort .about-images-stack {
+        width: 100% !important;
+        height: 350px !important;
+        max-width: 100% !important;
+        margin-top: 30px !important;
+        position: relative !important;
+    }
+    #site-resort .about-img-1 {
+        width: 80% !important;
+        height: 220px !important;
+    }
+    #site-resort .about-img-2 {
+        width: 70% !important;
+        height: 190px !important;
+    }
+    #site-resort .about-img-1 img,
+    #site-resort .about-img-2 img {
+        width: 100% !important;
+        height: 100% !important;
+        object-fit: cover !important;
     }
 
     /* --- Hero buttons: stack vertically --- */
@@ -4215,3 +4407,434 @@ ul {
         padding: 60px 0 !important;
     }
 }
+
+/* ============================================================
+   ARCHITECTURAL PLANNING & 3D VISUALIZATION SECTION
+============================================================ */
+.architecture-section {
+    padding: 100px 0;
+    background-color: var(--light-grey);
+}
+
+.architecture-grid {
+    display: grid;
+    grid-template-columns: 1.2fr 1fr;
+    gap: 60px;
+    align-items: center;
+}
+
+.architecture-content {
+    display: flex;
+    flex-direction: column;
+}
+
+.architecture-desc {
+    font-size: 1.1rem;
+    color: #555;
+    line-height: 1.6;
+    margin-bottom: 30px;
+}
+
+.architecture-services-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+    margin-bottom: 35px;
+}
+
+.arch-service-card {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 14px 20px;
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.02);
+}
+
+.arch-service-card:hover {
+    transform: translateY(-3px);
+    border-color: var(--primary);
+    box-shadow: 0 10px 25px rgba(243, 111, 33, 0.08);
+}
+
+.arch-service-icon {
+    width: 40px;
+    height: 40px;
+    background-color: rgba(243, 111, 33, 0.08);
+    color: var(--primary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    font-size: 1.25rem;
+    flex-shrink: 0;
+    transition: all 0.3s ease;
+}
+
+.arch-service-card:hover .arch-service-icon {
+    background-color: var(--primary);
+    color: var(--white);
+    transform: scale(1.05);
+}
+
+.arch-service-info h4 {
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--dark);
+    margin: 0;
+}
+
+.architecture-image-wrapper {
+    position: relative;
+}
+
+.arch-img-stack {
+    position: relative;
+    height: 450px;
+    width: 100%;
+}
+
+.arch-img-1 {
+    width: 75%;
+    aspect-ratio: 4/3;
+    border-radius: 12px;
+    overflow: hidden;
+    position: absolute;
+    top: 0;
+    left: 0;
+    box-shadow: 0 15px 30px rgba(0,0,0,0.12);
+    border: 6px solid var(--white);
+    z-index: 1;
+    transition: transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1), z-index 0.4s;
+}
+
+.arch-img-2 {
+    width: 75%;
+    aspect-ratio: 4/3;
+    border-radius: 12px;
+    overflow: hidden;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.18);
+    border: 6px solid var(--white);
+    z-index: 2;
+    transition: transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1), z-index 0.4s;
+}
+
+.arch-img-1 img,
+.arch-img-2 img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.arch-img-label {
+    position: absolute;
+    bottom: 15px;
+    left: 15px;
+    background: rgba(0, 0, 0, 0.75);
+    color: var(--white);
+    padding: 6px 14px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    border-radius: 20px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.arch-img-1:hover {
+    z-index: 3;
+    transform: scale(1.05) translateY(-5px);
+}
+
+.arch-img-2:hover {
+    z-index: 3;
+    transform: scale(1.05) translateY(-5px);
+}
+
+/* Responsive Styles for Architecture Section */
+@media (max-width: 1024px) {
+    .architecture-grid {
+        grid-template-columns: 1fr;
+        gap: 50px;
+    }
+    
+    .arch-img-stack {
+        width: 100% !important;
+        height: 380px !important;
+        max-width: 500px !important;
+        margin: 0 auto !important;
+        position: relative !important;
+    }
+    
+    .arch-img-1 {
+        width: 75% !important;
+        height: 240px !important;
+    }
+    
+    .arch-img-2 {
+        width: 75% !important;
+        height: 240px !important;
+    }
+    
+    .arch-img-1 img,
+    .arch-img-2 img {
+        width: 100% !important;
+        height: 100% !important;
+        object-fit: cover !important;
+    }
+}
+
+@media (max-width: 768px) {
+    .architecture-services-grid {
+        grid-template-columns: 1fr;
+        gap: 12px;
+    }
+    
+    .architecture-desc {
+        font-size: 1rem;
+    }
+}
+
+/* ============================================================
+   CALL RINGING & PHONE MOCKUP ANIMATIONS
+============================================================ */
+.phone-mockup {
+    background: #000 !important;
+    border: 3px solid #333 !important;
+    border-radius: 24px !important;
+    padding: 24px 16px !important;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4) !important;
+    position: relative;
+    overflow: hidden;
+    max-width: 320px;
+    margin: 0 auto;
+    width: 100%;
+}
+
+.phone-screen {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.phone-notch {
+    width: 110px;
+    height: 18px;
+    background: #333;
+    border-bottom-left-radius: 12px;
+    border-bottom-right-radius: 12px;
+    position: absolute;
+    top: -24px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.incoming-text {
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: var(--primary);
+    letter-spacing: 2px;
+    margin-bottom: 15px;
+    animation: textBlink 1.5s infinite;
+}
+
+#site-resort .incoming-text {
+    color: #d8b257;
+}
+
+.incoming-call-icon {
+    position: relative;
+    width: 64px;
+    height: 64px;
+    background: var(--primary);
+    color: var(--white);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.6rem;
+    margin: 10px 0 20px;
+    animation: ringShake 0.6s infinite;
+}
+
+#site-resort .incoming-call-icon {
+    background: #d8b257;
+}
+
+.incoming-call-icon::before,
+.incoming-call-icon::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border: 2px solid var(--primary);
+    border-radius: 50%;
+    animation: ringPulse 1.6s infinite;
+    opacity: 0;
+}
+
+#site-resort .incoming-call-icon::before,
+#site-resort .incoming-call-icon::after {
+    border-color: #d8b257;
+}
+
+.incoming-call-icon::after {
+    animation-delay: 0.8s;
+}
+
+.contact-action-btn.call.btn-ring {
+    animation: btnVibrate 2s infinite;
+    background: #25d366 !important; /* Green for answer call */
+    box-shadow: 0 4px 15px rgba(37, 211, 102, 0.4);
+}
+
+.contact-action-btn.call.btn-ring:hover {
+    background: #20ba5a !important;
+}
+
+/* Header Helpline Shake Animation */
+.shake-ring {
+    animation: ringShake 2s infinite ease-in-out;
+    display: inline-block;
+}
+
+/* --- Keyframe Animations --- */
+@keyframes ringShake {
+    0%, 100% { transform: rotate(0) scale(1); }
+    10%, 30%, 50%, 70%, 90% { transform: rotate(-10deg) scale(1.05); }
+    20%, 40%, 60%, 80% { transform: rotate(10deg) scale(1.05); }
+}
+
+@keyframes ringPulse {
+    0% { transform: scale(1); opacity: 0.8; }
+    100% { transform: scale(1.6); opacity: 0; }
+}
+
+@keyframes textBlink {
+    0%, 100% { opacity: 0.5; }
+    50% { opacity: 1; }
+}
+
+@keyframes btnVibrate {
+    0%, 90%, 100% { transform: scale(1); }
+    92%, 96% { transform: rotate(-2deg) scale(1.02); }
+    94%, 98% { transform: rotate(2deg) scale(1.02); }
+}
+
+/* Toast Notification */
+.toast-notification {
+    position: fixed;
+    bottom: -100px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(20, 20, 20, 0.95);
+    border: 1px solid rgba(243, 111, 33, 0.3);
+    color: #fff;
+    padding: 12px 24px;
+    border-radius: 50px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    z-index: 9999;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    backdrop-filter: blur(10px);
+}
+
+.toast-notification.show {
+    bottom: 30px;
+}
+
+.toast-icon {
+    color: var(--primary);
+    font-size: 1.1rem;
+}
+
+/* Completed Projects Showcase */
+.projects-gallery {
+    padding: 80px 0;
+}
+.projects-showcase-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 30px;
+    margin-top: 30px;
+}
+.project-showcase-card {
+    background: var(--white);
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.06);
+    border: 1px solid rgba(0,0,0,0.06);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.project-showcase-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 40px rgba(0,0,0,0.12);
+}
+.project-showcase-img {
+    height: 280px;
+    width: 100%;
+    overflow: hidden;
+}
+.project-showcase-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+.project-showcase-card:hover .project-showcase-img img {
+    transform: scale(1.05);
+}
+.project-showcase-info {
+    padding: 24px;
+}
+.project-showcase-info .project-tag {
+    font-size: 0.72rem;
+    color: var(--primary);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    display: inline-block;
+    margin-bottom: 8px;
+}
+.project-showcase-info h4 {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--dark);
+    margin-bottom: 10px;
+}
+.project-showcase-info p {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    margin: 0;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+@media (max-width: 768px) {
+    .projects-showcase-grid {
+        grid-template-columns: 1fr !important;
+    }
+    .project-showcase-img {
+        height: 220px !important;
+    }
+}
+
+
+

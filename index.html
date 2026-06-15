@@ -3,9 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Swastik Group | Balaji Homestay Madikeri</title>
-    <meta name="description" content="Swastik Group - Leading construction materials supplier. Also home to Swastiks Balaji Homestay, Madikeri, Coorg.">
+    <title>Swastik Group | Balaji Homestay Somwarpet</title>
+    <meta name="description" content="Swastik Group - Leading construction materials supplier. Also home to Swastiks Balaji Homestay, Somwarpet, Coorg.">
     <link rel="stylesheet" href="style.css">
+    <style>
+    /* Cloud product extras */
+    .cloud-badge{position:absolute;top:10px;left:10px;background:linear-gradient(135deg,#ff6b35,#f7931e);color:#fff;font-size:0.65rem;font-weight:700;padding:3px 8px;border-radius:20px;letter-spacing:1px;}
+    .product-cat-tag{font-size:0.72rem;color:#ff6b35;text-transform:uppercase;letter-spacing:1px;margin-bottom:4px;font-weight:600;}
+    .cloud-filter-bar{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:24px;}
+    .cloud-filter-btn{padding:7px 18px;border-radius:20px;border:1px solid rgba(0,0,0,0.15);background:transparent;color:#555;font-size:0.82rem;cursor:pointer;transition:all .2s;font-family:inherit;}
+    .cloud-filter-btn.active,.cloud-filter-btn:hover{background:#e05a1e;border-color:#e05a1e;color:#fff;}
+    </style>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
@@ -19,19 +27,22 @@ function switchSite(name) {
     const main = document.getElementById('site-main');
     const resort = document.getElementById('site-resort');
     const badge = document.getElementById('hotelCalloutBadge');
+    const taxiBadge = document.getElementById('taxiCalloutBadge');
     const groupBadge = document.getElementById('groupCalloutBadge');
     
     if (name === 'resort') {
         main.style.display = 'none';
         resort.style.display = 'block';
-        document.title = 'Swastiks Balaji Homestay | Madikeri, Coorg';
+        document.title = 'Swastiks Balaji Homestay | Somwarpet, Coorg';
         if (badge) badge.style.display = 'none';
+        if (taxiBadge) taxiBadge.style.display = 'none';
         if (groupBadge) groupBadge.style.display = 'flex';
     } else {
         resort.style.display = 'none';
         main.style.display = 'block';
         document.title = 'Swastik Group | Construction Materials';
         if (badge) badge.style.display = 'flex';
+        if (taxiBadge) taxiBadge.style.display = 'flex';
         if (groupBadge) groupBadge.style.display = 'none';
     }
     window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -67,11 +78,16 @@ function switchSite(name) {
                     🏨 Our Hotel &amp; Restaurant
                 </button>
 
+                <!-- Mobile: Open Taxi Modal Button -->
+                <button id="mobileTaxiBtn" style="display:none; background: linear-gradient(135deg, #ffd700, #ff8c00); color:#000; border:none; padding:10px 20px; border-radius:50px; font-size:0.85rem; font-weight:700; letter-spacing:1px; cursor:pointer; margin-top:5px; text-transform:uppercase;">
+                    🚕 Swastiks Taxi Service
+                </button>
+
                 <!-- Mobile Only Helpline -->
                 <div class="mobile-helpline">
                     <span class="helpline-title">CONTACT HELPLINE</span>
-                    <a href="tel:9632021608" class="helpline-number">+91 9632021608</a>
-                    <a href="tel:8073791263" class="helpline-number">+91 8073791263</a>
+                    <a href="tel:8073791263" class="helpline-number"><i class="fa-solid fa-phone shake-ring" style="color: var(--primary); margin-right: 5px;"></i> +91 8073791263</a>
+                    <a href="tel:9731534141" class="helpline-number"><i class="fa-solid fa-phone shake-ring" style="color: var(--primary); margin-right: 5px;"></i> +91 97315 34141</a>
                 </div>
 </nav>
 
@@ -81,13 +97,13 @@ function switchSite(name) {
             
             <div class="nav-actions">
                 <div class="helpline">
-                    <div class="helpline-icon"><i class="fa-solid fa-phone"></i></div>
+                    <div class="helpline-icon shake-ring"><i class="fa-solid fa-phone"></i></div>
                     <div class="helpline-text">
                         <span class="helpline-title">CONTACT US</span>
                         <div class="helpline-numbers">
-                            <a href="tel:9632021608" class="helpline-number">+91 9632021608</a>
-                            <span class="helpline-separator">/</span>
                             <a href="tel:8073791263" class="helpline-number">+91 8073791263</a>
+                            <span class="helpline-separator">/</span>
+                            <a href="tel:9731534141" class="helpline-number">+91 97315 34141</a>
                         </div>
                     </div>
                 </div>
@@ -302,7 +318,7 @@ function switchSite(name) {
         <div class="container about-grid">
             <div class="about-content">
                 <p class="section-subtitle">ABOUT US</p>
-                <h2 class="section-title">Building Relationships<br>Building <span class="highlight">Tomorrow</span></h2>
+                <h2 class="section-title">Your Partner in<br>Every <span class="highlight">Foundation</span></h2>
                 <p class="about-text">We are a leading supplier of high-quality construction materials including cement, TMT steel, aggregates, bricks and more. With a commitment to quality and customer satisfaction, we help you build stronger, safer and longer-lasting structures.</p>
                 
                 <ul class="about-list">
@@ -357,28 +373,28 @@ function switchSite(name) {
                 <div class="product-card">
                     <div class="product-img"><img src="acc cement.jpg" alt="ACC Cement"></div>
                     <div class="product-details">
-                        <h4>ACC PPC Cement 50 kg</h4>
+                        <h4>ACC PPC Cement</h4>
                         <button class="btn btn-outline-primary full-width">ENQUIRE NOW <i class="fa-solid fa-arrow-right"></i></button>
                     </div>
                 </div>
                 <div class="product-card">
                     <div class="product-img"><img src="meenashi tmt image.png" alt="Meenashi TMT"></div>
                     <div class="product-details">
-                        <h4>Meenashi TMT Bar 12mm</h4>
+                        <h4>Meenashi TMT Bar</h4>
                         <button class="btn btn-outline-primary full-width">ENQUIRE NOW <i class="fa-solid fa-arrow-right"></i></button>
                     </div>
                 </div>
                 <div class="product-card">
                     <div class="product-img"><img src="bricks_blocks.png" alt="Product"></div>
                     <div class="product-details">
-                        <h4>Solid Concrete Block 6-inch</h4>
+                        <h4>Solid Concrete Block</h4>
                         <button class="btn btn-outline-primary full-width">ENQUIRE NOW <i class="fa-solid fa-arrow-right"></i></button>
                     </div>
                 </div>
                 <div class="product-card">
                     <div class="product-img"><img src="Maha-cement .jpg" alt="Maha Cement"></div>
                     <div class="product-details">
-                        <h4>Maha Cement 53 Grade 50 kg</h4>
+                        <h4>Maha Cement</h4>
                         <button class="btn btn-outline-primary full-width">ENQUIRE NOW <i class="fa-solid fa-arrow-right"></i></button>
                     </div>
                 </div>
@@ -398,6 +414,108 @@ function switchSite(name) {
                     <source src="project_video.mp4" type="video/mp4">
                     Your browser does not support the video tag.
                 </video>
+            </div>
+        </div>
+    </section>
+
+    <!-- Completed Projects Showcase Section -->
+    <section class="section projects-gallery bg-white" id="completed-projects">
+        <div class="container">
+            <p class="section-subtitle">OUR MASTERPIECES</p>
+            <h2 class="section-title">Completed <span class="highlight">Projects</span></h2>
+            <p class="section-desc" style="max-width: 600px; margin: 10px 0 30px 0; color: var(--text-muted);">
+                Take a look at some of our recently completed residential and commercial projects built with Swastik materials and planning.
+            </p>
+            
+            <div class="projects-showcase-grid">
+                <div class="project-showcase-card">
+                    <div class="project-showcase-img">
+                        <img src="finished project.jpeg" alt="Completed Luxury Residential Project">
+                    </div>
+                    <div class="project-showcase-info">
+                        <span class="project-tag">House</span>
+                        <h4>Completed House</h4>
+                        <p><i class="fa-solid fa-location-dot"></i> Somwarpet, Coorg</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Architectural Planning & 3D Visualization Section -->
+    <section class="section architecture-section bg-light" id="architecture">
+        <div class="container architecture-grid">
+            <div class="architecture-content">
+                <p class="section-subtitle">DESIGN &amp; MODELING</p>
+                <h2 class="section-title">Architectural Planning<br>&amp; <span class="highlight">3D Visualization</span></h2>
+                <p class="architecture-desc mt-3">We design and build house and buildings plan and 3D models. From initial concepts to high-end realistic renders, we bring your vision to life.</p>
+                
+                <div class="architecture-services-grid mt-4">
+                    <div class="arch-service-card">
+                        <div class="arch-service-icon"><i class="fa-solid fa-compass-drafting"></i></div>
+                        <div class="arch-service-info">
+                            <h4>Architectural Design</h4>
+                        </div>
+                    </div>
+                    <div class="arch-service-card">
+                        <div class="arch-service-icon"><i class="fa-solid fa-calculator"></i></div>
+                        <div class="arch-service-info">
+                            <h4>Building Planning</h4>
+                        </div>
+                    </div>
+                    <div class="arch-service-card">
+                        <div class="arch-service-icon"><i class="fa-solid fa-house-chimney"></i></div>
+                        <div class="arch-service-info">
+                            <h4>Residential Design</h4>
+                        </div>
+                    </div>
+                    <div class="arch-service-card">
+                        <div class="arch-service-icon"><i class="fa-solid fa-building"></i></div>
+                        <div class="arch-service-info">
+                            <h4>Commercial Building Design</h4>
+                        </div>
+                    </div>
+                    <div class="arch-service-card">
+                        <div class="arch-service-icon"><i class="fa-solid fa-map"></i></div>
+                        <div class="arch-service-info">
+                            <h4>Floor Plan Development</h4>
+                        </div>
+                    </div>
+                    <div class="arch-service-card">
+                        <div class="arch-service-icon"><i class="fa-solid fa-layer-group"></i></div>
+                        <div class="arch-service-info">
+                            <h4>Site Planning</h4>
+                        </div>
+                    </div>
+                    <div class="arch-service-card">
+                        <div class="arch-service-icon"><i class="fa-solid fa-lightbulb"></i></div>
+                        <div class="arch-service-info">
+                            <h4>Concept Design</h4>
+                        </div>
+                    </div>
+                    <div class="arch-service-card">
+                        <div class="arch-service-icon"><i class="fa-solid fa-cube"></i></div>
+                        <div class="arch-service-info">
+                            <h4>3D Modeling &amp; Rendering</h4>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="architecture-cta mt-4">
+                    <a href="javascript:void(0)" class="btn btn-primary quote-trigger-btn">DISCUSS YOUR PROJECT <i class="fa-solid fa-comment-dots"></i></a>
+                </div>
+            </div>
+            <div class="architecture-image-wrapper">
+                <div class="arch-img-stack">
+                    <div class="arch-img-1">
+                        <img src="house_plan_drawing.png" alt="2D House Plan Drawing">
+                        <div class="arch-img-label">2D House Plan</div>
+                    </div>
+                    <div class="arch-img-2">
+                        <img src="architecture_3d_render.png" alt="3D Realistic Render">
+                        <div class="arch-img-label">3D Realization</div>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
@@ -519,14 +637,14 @@ function switchSite(name) {
                         <div class="contact-icon"><i class="fa-solid fa-phone"></i></div>
                         <div class="contact-info-text">
                             <strong>Phone</strong>
-                            <p><a href="tel:9632021608">+91 9632021608</a> / <a href="tel:8073791263">+91 8073791263</a></p>
+                            <p><a href="tel:8073791263">+91 8073791263</a> / <a href="tel:9731534141">+91 97315 34141</a></p>
                         </div>
                     </li>
                     <li>
                         <div class="contact-icon"><i class="fa-solid fa-envelope"></i></div>
                         <div class="contact-info-text">
                             <strong>Email</strong>
-                            <p><a href="mailto:info@swastikgroup.com">info@swastikgroup.com</a></p>
+                            <p><a href="mailto:swastiktraders1114@gmail.com">swastiktraders1114@gmail.com</a></p>
                         </div>
                     </li>
                 </ul>
@@ -561,10 +679,10 @@ function switchSite(name) {
                 </a>
                 <p class="footer-desc">Your trusted partner for quality construction materials and complete building solutions.</p>
                 <div class="social-links">
-                    <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
-                    <a href="#"><i class="fa-brands fa-instagram"></i></a>
-                    <a href="#"><i class="fa-brands fa-twitter"></i></a>
-                    <a href="#"><i class="fa-brands fa-linkedin-in"></i></a>
+                    <a href="javascript:void(0)" class="social-soon" title="Available Soon"><i class="fa-brands fa-facebook-f"></i></a>
+                    <a href="javascript:void(0)" class="social-soon" title="Available Soon"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="javascript:void(0)" class="social-soon" title="Available Soon"><i class="fa-brands fa-twitter"></i></a>
+                    <a href="javascript:void(0)" class="social-soon" title="Available Soon"><i class="fa-brands fa-linkedin-in"></i></a>
                 </div>
             </div>
             
@@ -584,7 +702,7 @@ function switchSite(name) {
                 <h3>COMPANY</h3>
                 <ul>
                     <li><a href="#">About Us</a></li>
-                    <li><a href="#">Our Projects</a></li>
+                    <li><a href="#completed-projects">Our Projects</a></li>
                     <li><a href="#">Our Brands</a></li>
                     <li><a href="#">Career</a></li>
                     <li><a href="#">Blog</a></li>
@@ -613,11 +731,11 @@ function switchSite(name) {
                     </li>
                     <li>
                         <i class="fa-solid fa-phone"></i>
-                        <p><a href="tel:9632021608">+91 9632021608</a><br><a href="tel:8073791263">+91 8073791263</a></p>
+                        <p><a href="tel:8073791263">+91 8073791263</a><br><a href="tel:9731534141">+91 97315 34141</a></p>
                     </li>
                     <li>
                         <i class="fa-solid fa-envelope"></i>
-                        <p><a href="mailto:info@swastikgroup.com">info@swastikgroup.com</a></p>
+                        <p><a href="mailto:swastiktraders1114@gmail.com">swastiktraders1114@gmail.com</a></p>
                     </li>
                     <li>
                         <i class="fa-solid fa-clock"></i>
@@ -660,8 +778,8 @@ function switchSite(name) {
 </div>
 
 <!-- Hotel & Restaurant Widget Callout -->
-<div class="hotel-callout-badge" id="hotelCalloutBadge">
-    Our Hotel, Take a Look <i class="fa-solid fa-arrow-right"></i>
+<div class="hotel-callout-badge resort-contact-trigger-btn" id="hotelCalloutBadge">
+    <i class="fa-solid fa-phone shake-ring"></i> Call Now
 </div>
 
 <!-- Hotel Widget -->
@@ -673,6 +791,23 @@ function switchSite(name) {
     </div>
     <div class="hotel-img-wrap">
         <img src="l2.png" alt="Swastiks Balaji Homestay">
+    </div>
+</a>
+
+<!-- Taxi Service Widget Callout -->
+<div class="taxi-callout-badge contact-trigger-btn" id="taxiCalloutBadge">
+    <i class="fa-solid fa-phone shake-ring"></i> Call Now
+</div>
+
+<!-- Taxi Service Widget (LEFT POP-OUT) -->
+<a href="javascript:void(0)" id="taxiWidgetTrigger" class="taxi-widget" style="text-decoration: none;">
+    <div class="taxi-img-wrap">
+        <img src="taxi_car.png" alt="Swastiks Taxi Service">
+    </div>
+    <div class="taxi-tab">
+        <span class="taxi-tab-sub">24/7 Cab Service</span>
+        <span class="taxi-tab-title">Swastiks Taxi Service</span>
+        <i class="fa-solid fa-chevron-right taxi-icon"></i>
     </div>
 </a>
 
@@ -885,7 +1020,7 @@ function switchSite(name) {
         }
 
         const message = `Hello Swastik Group! I would like to request a quote.\n\n*Name:* ${name}\n*Location:* ${place}\n*Requirement:* ${need}`;
-        const whatsappUrl = `https://wa.me/919632021608?text=${encodeURIComponent(message)}`;
+        const whatsappUrl = `https://wa.me/918073791263?text=${encodeURIComponent(message)}`;
         
         window.open(whatsappUrl, '_blank');
         quoteModal.style.display = 'none';
@@ -897,10 +1032,9 @@ function switchSite(name) {
     });
 
     // Contact Modal Logic
-    document.addEventListener('DOMContentLoaded', () => {
-        const contactModal = document.getElementById('contactModal');
-        const closeContactModal = document.getElementById('closeContactModal');
-        const contactTriggers = document.querySelectorAll('.contact-trigger-btn');
+    const contactModal = document.getElementById('contactModal');
+    const closeContactModal = document.getElementById('closeContactModal');
+    const contactTriggers = document.querySelectorAll('.contact-trigger-btn');
 
         if (contactTriggers && contactModal && closeContactModal) {
             contactTriggers.forEach(btn => {
@@ -939,9 +1073,6 @@ function switchSite(name) {
                 }
             };
 
-            if (hotelCalloutBadge) {
-                hotelCalloutBadge.addEventListener('click', openModalHandler);
-            }
             if (mobileHotelBtn) {
                 mobileHotelBtn.addEventListener('click', openModalHandler);
             }
@@ -971,6 +1102,36 @@ function switchSite(name) {
 
             menuZoomOverlay.addEventListener('click', () => {
                 menuZoomOverlay.style.display = 'none';
+            });
+        }
+
+        // Taxi Modal Logic
+        const taxiWidgetTrigger = document.getElementById('taxiWidgetTrigger');
+        const mobileTaxiBtn = document.getElementById('mobileTaxiBtn');
+        const taxiModal = document.getElementById('taxiModal');
+        const closeTaxiModal = document.getElementById('closeTaxiModal');
+
+        if (taxiModal && closeTaxiModal) {
+            const openTaxiModalHandler = (e) => {
+                if (e) e.preventDefault();
+                taxiModal.style.display = 'flex';
+            };
+
+            if (taxiWidgetTrigger) {
+                taxiWidgetTrigger.addEventListener('click', openTaxiModalHandler);
+            }
+            if (mobileTaxiBtn) {
+                mobileTaxiBtn.addEventListener('click', openTaxiModalHandler);
+            }
+
+            closeTaxiModal.addEventListener('click', () => {
+                taxiModal.style.display = 'none';
+            });
+
+            taxiModal.addEventListener('click', (e) => {
+                if (e.target === taxiModal) {
+                    taxiModal.style.display = 'none';
+                }
             });
         }
 
@@ -1019,75 +1180,34 @@ function switchSite(name) {
                 navbar.classList.add('scrolled');
             }
         }
-    });
+
+        // Available Soon Tooltip/Toast Logic
+        function showToast(message) {
+            let toast = document.getElementById('customToast');
+            if (!toast) {
+                toast = document.createElement('div');
+                toast.id = 'customToast';
+                toast.className = 'toast-notification';
+                toast.innerHTML = `<i class="fa-solid fa-circle-info toast-icon"></i><span class="toast-message"></span>`;
+                document.body.appendChild(toast);
+            }
+            toast.querySelector('.toast-message').textContent = message;
+            toast.classList.add('show');
+            setTimeout(() => {
+                toast.classList.remove('show');
+            }, 2500);
+        }
+
+        document.querySelectorAll('.social-soon').forEach(el => {
+            el.addEventListener('click', (e) => {
+                e.preventDefault();
+                showToast('Available Soon!');
+            });
+        });
 })();
 </script>
 
-<!-- CONTACT MODAL -->
-<div class="contact-modal-overlay" id="contactModal">
-    <div class="contact-modal-content">
-        <button class="contact-modal-close" id="closeContactModal"><i class="fa-solid fa-xmark"></i></button>
-        <div class="contact-modal-header">
-            <i class="fa-solid fa-phone-volume contact-modal-icon"></i>
-            <h3>Contact Swastik Group</h3>
-            <p>Call or message us directly on WhatsApp</p>
-        </div>
-        <div class="contact-numbers-container">
-            <div class="contact-number-card">
-                <div class="contact-number-name">Helpline 1</div>
-                <div class="contact-number-value">+91 9632021608</div>
-                <div class="contact-number-actions">
-                    <a href="tel:9632021608" class="contact-action-btn call"><i class="fa-solid fa-phone"></i> Call Now</a>
-                    <a href="https://wa.me/919632021608" target="_blank" class="contact-action-btn whatsapp"><i class="fa-brands fa-whatsapp"></i> WhatsApp</a>
-                </div>
-            </div>
-            <div class="contact-number-card">
-                <div class="contact-number-name">Helpline 2</div>
-                <div class="contact-number-value">+91 8073791263</div>
-                <div class="contact-number-actions">
-                    <a href="tel:8073791263" class="contact-action-btn call"><i class="fa-solid fa-phone"></i> Call Now</a>
-                    <a href="https://wa.me/918073791263" target="_blank" class="contact-action-btn whatsapp"><i class="fa-brands fa-whatsapp"></i> WhatsApp</a>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-
-<!-- HOTEL MODAL (VIDEO & MENU) -->
-<div class="hotel-modal-overlay" id="hotelModal">
-    <div class="hotel-modal-content">
-        <button class="hotel-modal-close" id="closeHotelModal"><i class="fa-solid fa-xmark"></i></button>
-        <div class="hotel-modal-header">
-            <h3>SWASTIKS HOTEL & RESTAURANT</h3>
-            <p>Experience exquisite dining & premium boarding in Madikeri</p>
-        </div>
-        <div class="hotel-modal-body">
-            <div class="hotel-modal-video-col">
-                <h4 class="hotel-sub-title"><i class="fa-solid fa-play"></i> Watch Video Tour</h4>
-                <div class="hotel-video-wrapper">
-                    <video id="hotelPromoVideo" controls loop muted playsinline>
-                        <source src="hotel video.mp4" type="video/mp4">
-                        Your browser does not support the video tag.
-                    </video>
-                </div>
-            </div>
-            <div class="hotel-modal-menu-col">
-                <h4 class="hotel-sub-title"><i class="fa-solid fa-file-invoice"></i> Menu Card</h4>
-                <div class="hotel-menu-wrapper">
-                    <img src="hotel.png" alt="Swastiks Hotel Menu" class="hotel-menu-img" id="hotelMenuImg">
-                    <div class="hotel-menu-zoom-hint">
-                        <i class="fa-solid fa-magnifying-glass-plus"></i> Click to Zoom Menu
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-
-<!-- MENU ZOOM LIGHTBOX -->
-<div class="menu-zoom-overlay" id="menuZoomOverlay">
-    <img src="hotel.png" alt="Zoomed Menu Card">
-</div>
+<!-- Modals moved to bottom of body -->
 
 </div>
 
@@ -1119,8 +1239,8 @@ function switchSite(name) {
                 <!-- Mobile Only Helpline -->
                 <div class="mobile-helpline">
                     <span class="helpline-title">CONTACT HELPLINE</span>
-                    <a href="tel:9632021608" class="helpline-number">+91 9632021608</a>
-                    <a href="tel:8073791263" class="helpline-number">+91 8073791263</a>
+                    <a href="tel:8073791263" class="helpline-number"><i class="fa-solid fa-phone shake-ring" style="color: #d8b257; margin-right: 5px;"></i> +91 8073791263</a>
+                    <a href="tel:9731534141" class="helpline-number"><i class="fa-solid fa-phone shake-ring" style="color: #d8b257; margin-right: 5px;"></i> +91 97315 34141</a>
                 </div>
             </nav>
 
@@ -1140,9 +1260,9 @@ function switchSite(name) {
         <div class="hero-overlay"></div>
         
         <div class="hero-content">
-            <div class="hero-subtitle">Madikeri Town, Coorg</div>
+            <div class="hero-subtitle">Somwarpet, Coorg</div>
             <h1 class="hero-title">Experience Nature's <br><span style="color: var(--accent);">Purest Embrace</span></h1>
-            <p class="hero-desc">Welcome to Swastiks Balaji Homestay. A peaceful sanctuary of luxury stays, adventure camping, fishing, and campfire memories in Madikeri.</p>
+            <p class="hero-desc">Welcome to Swastiks Balaji Homestay. A peaceful sanctuary of luxury stays, adventure camping, fishing, and campfire memories in Somwarpet.</p>
             <div class="hero-btns">
                 <a href="#accommodations" class="btn btn-primary">Explore Stay Option</a>
                 <a href="#book" class="btn btn-outline">Check Availability</a>
@@ -1161,7 +1281,7 @@ function switchSite(name) {
                 <p class="section-subtitle">Discover Swastiks</p>
                 <h2 class="section-title">Where Serenity <br>Meets Adventure</h2>
                 <p class="section-desc" style="font-size: 1.1rem; line-height: 1.8; margin-bottom: 25px;">
-                    Located in Madikeri Town, Coorg, Swastiks Balaji Homestay offers a unique combination of peaceful retreat and outdoor excitement. Wake up to the aroma of coffee blossoms, spend your day fishing by the river pond, and end your evening under a canopy of stars by a roaring bonfire.
+                    Located in Somwarpet, Coorg, Swastiks Balaji Homestay offers a unique combination of peaceful retreat and outdoor excitement. Wake up to the aroma of coffee blossoms, spend your day fishing by the river pond, and end your evening under a canopy of stars by a roaring bonfire.
                 </p>
                 
                 <div class="about-features">
@@ -1409,7 +1529,7 @@ function switchSite(name) {
                         <div class="book-contact-icon"><i class="fa-solid fa-location-dot"></i></div>
                         <div class="book-contact-details">
                             <h4>Location</h4>
-                            <p>Balaji Homestay, Madikeri Town, Coorg, Karnataka 571201</p>
+                            <p>Balaji Homestay, Somwarpet, Coorg, Karnataka 571236</p>
                         </div>
                     </div>
                     <div class="book-contact-item">
@@ -1417,8 +1537,8 @@ function switchSite(name) {
                         <div class="book-contact-details">
                             <h4>Phone / WhatsApp</h4>
                             <p>
-                                <a href="tel:9632021608" style="color: inherit;">+91 9632021608</a> / <br>
-                                <a href="tel:8073791263" style="color: inherit;">+91 8073791263</a>
+                                <a href="tel:8073791263" style="color: inherit;">+91 8073791263</a> / <br>
+                                <a href="tel:9731534141" style="color: inherit;">+91 97315 34141</a>
                             </p>
                         </div>
                     </div>
@@ -1426,7 +1546,7 @@ function switchSite(name) {
                         <div class="book-contact-icon"><i class="fa-solid fa-envelope"></i></div>
                         <div class="book-contact-details">
                             <h4>Email Support</h4>
-                            <p><a href="mailto:resort@swastikgroup.com" style="color: inherit;">resort@swastikgroup.com</a></p>
+                            <p><a href="mailto:swastiktraders1114@gmail.com" style="color: inherit;">swastiktraders1114@gmail.com</a></p>
                         </div>
                     </div>
                 </div>
@@ -1514,7 +1634,7 @@ function switchSite(name) {
             <div class="map-details">
                 <p class="section-subtitle">Our Location</p>
                 <h2 class="section-title" style="color: var(--primary);">How to Reach Us</h2>
-                <p style="margin-bottom: 24px; color: var(--text-muted);">We are located in the heart of Madikeri town, Coorg. Use the interactive map to navigate directly to Balaji Homestay.</p>
+                <p style="margin-bottom: 24px; color: var(--text-muted);">We are located in Somwarpet, Coorg. Use the interactive map to navigate directly to Balaji Homestay.</p>
                 <a href="https://www.google.com/maps/place/12%C2%B026'12.9%22N+75%C2%B043'34.0%22E/@12.4369106,75.7235451,17z/data=!3m1!4b1!4m4!3m3!8m2!3d12.4369106!4d75.72612?hl=en&entry=ttu" target="_blank" class="btn btn-primary">
                     Open in Google Maps <i class="fa-solid fa-map-location-dot"></i>
                 </a>
@@ -1548,12 +1668,12 @@ function switchSite(name) {
                         </div>
                     </a>
                     <p class="footer-desc">
-                        A peaceful nature homestay venture in Madikeri Town, Coorg, offering comfortable cottages, river fishing, camping tents and traditional food.
+                        A peaceful nature homestay venture in Somwarpet, Coorg, offering comfortable cottages, river fishing, camping tents and traditional food.
                     </p>
                     <div class="footer-socials">
-                        <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
-                        <a href="#"><i class="fa-brands fa-instagram"></i></a>
-                        <a href="#"><i class="fa-brands fa-twitter"></i></a>
+                        <a href="javascript:void(0)" class="social-soon" title="Available Soon"><i class="fa-brands fa-facebook-f"></i></a>
+                        <a href="javascript:void(0)" class="social-soon" title="Available Soon"><i class="fa-brands fa-instagram"></i></a>
+                        <a href="javascript:void(0)" class="social-soon" title="Available Soon"><i class="fa-brands fa-twitter"></i></a>
                     </div>
                 </div>
 
@@ -1574,15 +1694,15 @@ function switchSite(name) {
                     <ul class="footer-contact">
                         <li>
                             <i class="fa-solid fa-location-dot"></i>
-                            <span>Balaji Homestay, Madikeri Town, Coorg, Karnataka 571201</span>
+                            <span>Balaji Homestay, Somwarpet, Coorg, Karnataka 571236</span>
                         </li>
                         <li>
                             <i class="fa-solid fa-phone"></i>
-                            <span>+91 9632021608<br>+91 8073791263</span>
+                            <span>+91 8073791263<br>+91 97315 34141</span>
                         </li>
                         <li>
                             <i class="fa-solid fa-envelope"></i>
-                            <span>resort@swastikgroup.com</span>
+                            <span>swastiktraders1114@gmail.com</span>
                         </li>
                     </ul>
                 </div>
@@ -1865,15 +1985,14 @@ function switchSite(name) {
             }
 
             // WhatsApp link redirection
-            const whatsappUrl = `https://wa.me/919632021608?text=${encodeURIComponent(message)}`;
+            const whatsappUrl = `https://wa.me/918073791263?text=${encodeURIComponent(message)}`;
             window.open(whatsappUrl, '_blank');
         }
 
         // Contact Modal Logic
-        document.addEventListener('DOMContentLoaded', () => {
-            const contactModal = document.getElementById('resortContactModal');
-            const closeContactModal = document.getElementById('resortCloseContactModal');
-            const contactTriggers = document.querySelectorAll('.resort-contact-trigger-btn');
+        const contactModal = document.getElementById('resortContactModal');
+        const closeContactModal = document.getElementById('resortCloseContactModal');
+        const contactTriggers = document.querySelectorAll('.resort-contact-trigger-btn');
 
             if (contactTriggers && contactModal && closeContactModal) {
                 contactTriggers.forEach(btn => {
@@ -1893,38 +2012,9 @@ function switchSite(name) {
                     }
                 });
             }
-        });
     </script>
 
-    <!-- CONTACT MODAL -->
-    <div class="contact-modal-overlay" id="resortContactModal">
-        <div class="contact-modal-content">
-            <button class="contact-modal-close" id="resortCloseContactModal"><i class="fa-solid fa-xmark"></i></button>
-            <div class="contact-modal-header">
-                <i class="fa-solid fa-phone-volume contact-modal-icon"></i>
-                <h3>Contact Swastiks Balaji Homestay</h3>
-                <p>Call or message us directly on WhatsApp</p>
-            </div>
-            <div class="contact-numbers-container">
-                <div class="contact-number-card">
-                    <div class="contact-number-name">Manager Helpline</div>
-                    <div class="contact-number-value">+91 9632021608</div>
-                    <div class="contact-number-actions">
-                        <a href="tel:9632021608" class="contact-action-btn call"><i class="fa-solid fa-phone"></i> Call Now</a>
-                        <a href="https://wa.me/919632021608" target="_blank" class="contact-action-btn whatsapp"><i class="fa-brands fa-whatsapp"></i> WhatsApp</a>
-                    </div>
-                </div>
-                <div class="contact-number-card">
-                    <div class="contact-number-name">Booking Support</div>
-                    <div class="contact-number-value">+91 8073791263</div>
-                    <div class="contact-number-actions">
-                        <a href="tel:8073791263" class="contact-action-btn call"><i class="fa-solid fa-phone"></i> Call Now</a>
-                        <a href="https://wa.me/918073791263" target="_blank" class="contact-action-btn whatsapp"><i class="fa-brands fa-whatsapp"></i> WhatsApp</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+    <!-- Resort Modals moved to bottom of body -->
     <!-- Swastik Group Callout Badge -->
     <div class="group-callout-badge" id="groupCalloutBadge" style="display:none" onclick="switchSite('main')">
         Swastik Group, Take a Look <i class="fa-solid fa-arrow-right"></i>
@@ -1944,5 +2034,179 @@ function switchSite(name) {
 
 </div>
 
+<!-- ==========================================
+     GLOBAL OVERLAYS & MODALS
+     (Moved outside site containers to prevent 
+      visibility issues due to hidden parents)
+     ========================================== -->
+
+<!-- CONTACT MODAL -->
+<div class="contact-modal-overlay" id="contactModal">
+    <div class="contact-modal-content">
+        <button class="contact-modal-close" id="closeContactModal"><i class="fa-solid fa-xmark"></i></button>
+        <div class="contact-modal-header">
+            <i class="fa-solid fa-phone-volume contact-modal-icon shake-ring"></i>
+            <h3>Contact Swastik Group</h3>
+            <p>Call or message us directly on WhatsApp</p>
+        </div>
+        <div class="contact-numbers-container">
+            <div class="contact-number-card phone-mockup">
+                <div class="phone-screen">
+                    <div class="phone-notch"></div>
+                    <div class="incoming-text">INCOMING CALL...</div>
+                    <div class="incoming-call-icon"><i class="fa-solid fa-phone"></i></div>
+                    <div class="contact-number-name">Helpline 1</div>
+                    <div class="contact-number-value">+91 8073791263</div>
+                    <div class="contact-number-actions">
+                        <a href="tel:8073791263" class="contact-action-btn call btn-ring"><i class="fa-solid fa-phone"></i> Call Now</a>
+                        <a href="https://wa.me/918073791263" target="_blank" class="contact-action-btn whatsapp"><i class="fa-brands fa-whatsapp"></i> WhatsApp</a>
+                    </div>
+                </div>
+            </div>
+            <div class="contact-number-card phone-mockup">
+                <div class="phone-screen">
+                    <div class="phone-notch"></div>
+                    <div class="incoming-text">INCOMING CALL...</div>
+                    <div class="incoming-call-icon"><i class="fa-solid fa-phone"></i></div>
+                    <div class="contact-number-name">Helpline 2</div>
+                    <div class="contact-number-value">+91 97315 34141</div>
+                    <div class="contact-number-actions">
+                        <a href="tel:9731534141" class="contact-action-btn call btn-ring"><i class="fa-solid fa-phone"></i> Call Now</a>
+                        <a href="https://wa.me/919731534141" target="_blank" class="contact-action-btn whatsapp"><i class="fa-brands fa-whatsapp"></i> WhatsApp</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- HOTEL MODAL (VIDEO & MENU) -->
+<div class="hotel-modal-overlay" id="hotelModal">
+    <div class="hotel-modal-content">
+        <button class="hotel-modal-close" id="closeHotelModal"><i class="fa-solid fa-xmark"></i></button>
+        <div class="hotel-modal-header">
+            <h3>SWASTIKS HOTEL & RESTAURANT</h3>
+            <p>Experience exquisite dining & premium boarding in Somwarpet</p>
+        </div>
+        <div class="hotel-modal-body">
+            <div class="hotel-modal-video-col">
+                <h4 class="hotel-sub-title"><i class="fa-solid fa-play"></i> Watch Video Tour</h4>
+                <div class="hotel-video-wrapper">
+                    <video id="hotelPromoVideo" controls loop muted playsinline>
+                        <source src="hotel video.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                </div>
+            </div>
+            <div class="hotel-modal-menu-col">
+                <h4 class="hotel-sub-title"><i class="fa-solid fa-file-invoice"></i> Menu Card</h4>
+                <div class="hotel-menu-wrapper">
+                    <img src="hotel menu.png" alt="Swastiks Hotel Menu" class="hotel-menu-img" id="hotelMenuImg">
+                    <div class="hotel-menu-zoom-hint">
+                        <i class="fa-solid fa-magnifying-glass-plus"></i> Click to Zoom Menu
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- MENU ZOOM LIGHTBOX -->
+<div class="menu-zoom-overlay" id="menuZoomOverlay">
+    <img src="hotel menu.png" alt="Zoomed Menu Card">
+</div>
+
+<!-- TAXI MODAL -->
+<div class="contact-modal-overlay" id="taxiModal">
+    <div class="contact-modal-content">
+        <button class="contact-modal-close" id="closeTaxiModal"><i class="fa-solid fa-xmark"></i></button>
+        <div class="contact-modal-header">
+            <i class="fa-solid fa-taxi contact-modal-icon shake-ring" style="color: #ffd700;"></i>
+            <h3>Swastiks Taxi Service</h3>
+            <p>24/7 Travel &amp; Sightseeing Cabs in Coorg</p>
+        </div>
+        
+        <div style="margin: 20px 0; border-radius: 12px; overflow: hidden; border: 1px solid #333;">
+            <img src="taxi_car.png" alt="Swastiks Taxi" style="width: 100%; height: 160px; object-fit: cover;">
+            <div style="padding: 15px; background: #111; text-align: left;">
+                <h4 style="color: #ffd700; margin-bottom: 5px; font-size: 0.95rem; font-weight: 700;">Karnataka Registered Cabs</h4>
+                <p style="color: #aaa; font-size: 0.8rem; margin: 0; line-height: 1.4;">Comfortable sedans and hatchbacks with experienced local tourist drivers. Available for airport drops, local sightseeing, and outstation trips.</p>
+            </div>
+        </div>
+
+        <div class="contact-numbers-container">
+            <div class="contact-number-card phone-mockup">
+                <div class="phone-screen">
+                    <div class="phone-notch"></div>
+                    <div class="incoming-text" style="color: #ffd700;">TAXI BOOKING...</div>
+                    <div class="incoming-call-icon" style="background: #ffd700; color: #000;"><i class="fa-solid fa-taxi"></i></div>
+                    <div class="contact-number-name">Booking Helpline</div>
+                    <div class="contact-number-value">+91 8073791263</div>
+                    <div class="contact-number-actions">
+                        <a href="tel:8073791263" class="contact-action-btn call btn-ring"><i class="fa-solid fa-phone"></i> Call Now</a>
+                        <a href="https://wa.me/918073791263" target="_blank" class="contact-action-btn whatsapp"><i class="fa-brands fa-whatsapp"></i> WhatsApp</a>
+                    </div>
+                </div>
+            </div>
+            <div class="contact-number-card phone-mockup">
+                <div class="phone-screen">
+                    <div class="phone-notch"></div>
+                    <div class="incoming-text" style="color: #ffd700;">TAXI BOOKING...</div>
+                    <div class="incoming-call-icon" style="background: #ffd700; color: #000;"><i class="fa-solid fa-taxi"></i></div>
+                    <div class="contact-number-name">Support Helpline</div>
+                    <div class="contact-number-value">+91 97315 34141</div>
+                    <div class="contact-number-actions">
+                        <a href="tel:9731534141" class="contact-action-btn call btn-ring"><i class="fa-solid fa-phone"></i> Call Now</a>
+                        <a href="https://wa.me/919731534141" target="_blank" class="contact-action-btn whatsapp"><i class="fa-brands fa-whatsapp"></i> WhatsApp</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- RESORT CONTACT MODAL -->
+<div class="contact-modal-overlay" id="resortContactModal">
+    <div class="contact-modal-content">
+        <button class="contact-modal-close" id="resortCloseContactModal"><i class="fa-solid fa-xmark"></i></button>
+        <div class="contact-modal-header">
+            <i class="fa-solid fa-phone-volume contact-modal-icon shake-ring"></i>
+            <h3>Contact Swastiks Balaji Homestay</h3>
+            <p>Call or message us directly on WhatsApp</p>
+        </div>
+        <div class="contact-numbers-container">
+            <div class="contact-number-card phone-mockup">
+                <div class="phone-screen">
+                    <div class="phone-notch"></div>
+                    <div class="incoming-text">INCOMING CALL...</div>
+                    <div class="incoming-call-icon"><i class="fa-solid fa-phone"></i></div>
+                    <div class="contact-number-name">Manager Helpline</div>
+                    <div class="contact-number-value">+91 8073791263</div>
+                    <div class="contact-number-actions">
+                        <a href="tel:8073791263" class="contact-action-btn call btn-ring"><i class="fa-solid fa-phone"></i> Call Now</a>
+                        <a href="https://wa.me/918073791263" target="_blank" class="contact-action-btn whatsapp"><i class="fa-brands fa-whatsapp"></i> WhatsApp</a>
+                    </div>
+                </div>
+            </div>
+            <div class="contact-number-card phone-mockup">
+                <div class="phone-screen">
+                    <div class="phone-notch"></div>
+                    <div class="incoming-text">INCOMING CALL...</div>
+                    <div class="incoming-call-icon"><i class="fa-solid fa-phone"></i></div>
+                    <div class="contact-number-name">Booking Support</div>
+                    <div class="contact-number-value">+91 97315 34141</div>
+                    <div class="contact-number-actions">
+                        <a href="tel:9731534141" class="contact-action-btn call btn-ring"><i class="fa-solid fa-phone"></i> Call Now</a>
+                        <a href="https://wa.me/919731534141" target="_blank" class="contact-action-btn whatsapp"><i class="fa-brands fa-whatsapp"></i> WhatsApp</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+</div>
+
 </body>
+<script src="cloud-products.js"></script>
 </html>

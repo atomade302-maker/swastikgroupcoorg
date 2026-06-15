@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Swastik Admin Panel</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<style>
+  *{margin:0;padding:0;box-sizing:border-box;}
+  body{font-family:'Inter',sans-serif;background:#0a0a0f;color:#fff;min-height:100vh;}
+
+  /* LOGIN SCREEN */
+  #loginScreen{display:flex;align-items:center;justify-content:center;min-height:100vh;background:linear-gradient(135deg,#0a0a0f 0%,#1a1a2e 100%);}
+  .login-card{background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);border-radius:20px;padding:48px 40px;width:100%;max-width:400px;backdrop-filter:blur(20px);text-align:center;}
+  .login-card .logo-icon{width:70px;height:70px;background:linear-gradient(135deg,#ff6b35,#f7931e);border-radius:16px;display:flex;align-items:center;justify-content:center;font-size:2rem;margin:0 auto 20px;}
+  .login-card h2{font-size:1.8rem;font-weight:800;margin-bottom:6px;}
+  .login-card p{color:#888;font-size:0.9rem;margin-bottom:30px;}
+  .login-input{width:100%;padding:14px 18px;background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.15);border-radius:10px;color:#fff;font-size:1rem;font-family:inherit;margin-bottom:16px;outline:none;transition:border 0.2s;}
+  .login-input:focus{border-color:#ff6b35;}
+  .login-btn{width:100%;padding:14px;background:linear-gradient(135deg,#ff6b35,#f7931e);border:none;border-radius:10px;color:#fff;font-size:1rem;font-weight:700;cursor:pointer;letter-spacing:1px;transition:opacity 0.2s;}
+  .login-btn:hover{opacity:0.9;}
+  .login-error{color:#ff4444;font-size:0.85rem;margin-top:10px;display:none;}
+
+  /* ADMIN PANEL */
+  #adminPanel{display:none;}
+  .admin-header{background:rgba(255,255,255,0.04);border-bottom:1px solid rgba(255,255,255,0.08);padding:20px 40px;display:flex;align-items:center;justify-content:space-between;}
+  .admin-header .brand{display:flex;align-items:center;gap:14px;}
+  .admin-header .brand .icon{width:42px;height:42px;background:linear-gradient(135deg,#ff6b35,#f7931e);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:1.1rem;}
+  .admin-header .brand h1{font-size:1.3rem;font-weight:700;}
+  .admin-header .brand span{color:#888;font-size:0.8rem;display:block;}
+  .logout-btn{background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.15);border-radius:8px;color:#aaa;padding:8px 18px;cursor:pointer;font-size:0.85rem;transition:all 0.2s;}
+  .logout-btn:hover{background:rgba(255,68,68,0.2);border-color:#ff4444;color:#ff4444;}
+
+  .admin-body{padding:40px;max-width:1300px;margin:0 auto;}
+  .stats-row{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-bottom:40px;}
+  .stat-card{background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:14px;padding:24px;text-align:center;}
+  .stat-card .num{font-size:2.2rem;font-weight:800;color:#ff6b35;}
+  .stat-card .lbl{color:#888;font-size:0.85rem;margin-top:4px;}
+
+  .upload-section{background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:18px;padding:32px;margin-bottom:40px;}
+  .upload-section h2{font-size:1.3rem;font-weight:700;margin-bottom:6px;}
+  .upload-section p{color:#888;font-size:0.88rem;margin-bottom:24px;}
+  .upload-form{display:grid;grid-template-columns:1fr 1fr auto;gap:16px;align-items:end;margin-bottom:20px;}
+  .form-group label{display:block;font-size:0.8rem;color:#aaa;margin-bottom:8px;text-transform:uppercase;letter-spacing:1px;}
+  .form-group input, .form-group select{width:100%;padding:12px 16px;background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.12);border-radius:10px;color:#fff;font-family:inherit;font-size:0.95rem;outline:none;transition:border 0.2s;}
+  .form-group input:focus, .form-group select:focus{border-color:#ff6b35;}
+  .form-group select option{background:#1a1a2e;color:#fff;}
+  .drop-zone{border:2px dashed rgba(255,107,53,0.4);border-radius:14px;padding:40px;text-align:center;cursor:pointer;transition:all 0.3s;background:rgba(255,107,53,0.03);}
+  .drop-zone:hover,.drop-zone.drag-over{border-color:#ff6b35;background:rgba(255,107,53,0.08);}
+  .drop-zone i{font-size:2.5rem;color:#ff6b35;margin-bottom:12px;display:block;}
+  .drop-zone p{color:#aaa;font-size:0.9rem;}
+  .drop-zone strong{color:#fff;}
+  #fileInput{display:none;}
+  .preview-strip{display:flex;flex-wrap:wrap;gap:12px;margin-top:20px;}
+  .preview-item{position:relative;width:100px;height:100px;border-radius:10px;overflow:hidden;border:2px solid rgba(255,255,255,0.1);}
+  .preview-item img{width:100%;height:100%;object-fit:cover;}
+  .preview-item .remove-prev{position:absolute;top:4px;right:4px;background:rgba(0,0,0,0.7);border:none;color:#fff;border-radius:50%;width:22px;height:22px;cursor:pointer;font-size:0.7rem;display:flex;align-items:center;justify-content:center;}
+  .upload-actions{display:flex;gap:12px;margin-top:20px;}
+  .btn-upload{padding:12px 28px;background:linear-gradient(135deg,#ff6b35,#f7931e);border:none;border-radius:10px;color:#fff;font-size:0.95rem;font-weight:700;cursor:pointer;display:flex;align-items:center;gap:8px;transition:opacity 0.2s;}
+  .btn-upload:hover{opacity:0.9;}
+  .btn-upload:disabled{opacity:0.5;cursor:not-allowed;}
+  .progress-bar-wrap{background:rgba(255,255,255,0.08);border-radius:20px;height:8px;margin-top:16px;overflow:hidden;display:none;}
+  .progress-bar{height:100%;background:linear-gradient(90deg,#ff6b35,#f7931e);border-radius:20px;width:0%;transition:width 0.3s;}
+
+  /* PRODUCT GRID */
+  .products-section h2{font-size:1.3rem;font-weight:700;margin-bottom:6px;}
+  .products-section p{color:#888;font-size:0.88rem;margin-bottom:24px;}
+  .filter-bar{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:24px;}
+  .filter-btn{padding:8px 18px;border-radius:20px;border:1px solid rgba(255,255,255,0.15);background:transparent;color:#aaa;font-size:0.85rem;cursor:pointer;transition:all 0.2s;}
+  .filter-btn.active,.filter-btn:hover{background:#ff6b35;border-color:#ff6b35;color:#fff;}
+  .admin-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:20px;}
+  .admin-product-card{background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:14px;overflow:hidden;transition:transform 0.2s,border-color 0.2s;}
+  .admin-product-card:hover{transform:translateY(-4px);border-color:rgba(255,107,53,0.4);}
+  .admin-product-card .card-img{width:100%;height:150px;object-fit:cover;}
+  .admin-product-card .card-body{padding:14px;}
+  .admin-product-card .card-name{font-weight:600;font-size:0.95rem;margin-bottom:4px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+  .admin-product-card .card-cat{font-size:0.75rem;color:#ff6b35;text-transform:uppercase;letter-spacing:1px;margin-bottom:12px;}
+  .card-actions{display:flex;gap:8px;}
+  .btn-delete{flex:1;padding:8px;background:rgba(255,68,68,0.15);border:1px solid rgba(255,68,68,0.3);border-radius:8px;color:#ff6666;font-size:0.8rem;cursor:pointer;transition:all 0.2s;}
+  .btn-delete:hover{background:rgba(255,68,68,0.3);}
+  .empty-state{text-align:center;padding:80px 20px;color:#555;}
+  .empty-state i{font-size:3rem;margin-bottom:16px;display:block;}
+  .toast{position:fixed;bottom:30px;right:30px;background:#1e1e2e;border:1px solid rgba(255,107,53,0.4);border-radius:12px;padding:14px 22px;color:#fff;font-size:0.9rem;display:flex;align-items:center;gap:10px;z-index:9999;transform:translateY(100px);opacity:0;transition:all 0.4s;}
+  .toast.show{transform:translateY(0);opacity:1;}
+  .toast.success i{color:#4caf50;}
+  .toast.error i{color:#ff4444;}
+  @media(max-width:768px){
+    .admin-body{padding:20px;}
+    .upload-form{grid-template-columns:1fr;}
+    .stats-row{grid-template-columns:repeat(3,1fr);}
+    .admin-header{padding:16px 20px;}
+  }
+</style>
+</head>
+<body>
+
+<!-- LOGIN -->
+<div id="loginScreen">
+  <div class="login-card">
+    <div class="logo-icon">🏗️</div>
+    <h2>Admin Panel</h2>
+    <p>Swastik Group — Restricted Access</p>
+    <input type="password" id="adminPass" class="login-input" placeholder="Enter admin password" onkeydown="if(event.key==='Enter')doLogin()">
+    <button class="login-btn" onclick="doLogin()">LOGIN <i class="fa-solid fa-arrow-right" style="margin-left:8px"></i></button>
+    <p class="login-error" id="loginError">❌ Incorrect password. Try again.</p>
+  </div>
+</div>
+
+<!-- ADMIN PANEL -->
+<div id="adminPanel">
+  <header class="admin-header">
+    <div class="brand">
+      <div class="icon">🏗️</div>
+      <div>
+        <h1>Swastik Admin</h1>
+        <span>Product Image Manager</span>
+      </div>
+    </div>
+    <button class="logout-btn" onclick="doLogout()"><i class="fa-solid fa-right-from-bracket"></i> Logout</button>
+  </header>
+
+  <div class="admin-body">
+    <!-- Stats -->
+    <div class="stats-row">
+      <div class="stat-card">
+        <div class="num" id="statTotal">0</div>
+        <div class="lbl">Total Products</div>
+      </div>
+      <div class="stat-card">
+        <div class="num" id="statCats">0</div>
+        <div class="lbl">Categories</div>
+      </div>
+      <div class="stat-card">
+        <div class="num" id="statNew">0</div>
+        <div class="lbl">Added This Week</div>
+      </div>
+    </div>
+
+    <!-- Upload -->
+    <div class="upload-section">
+      <h2><i class="fa-solid fa-cloud-arrow-up" style="color:#ff6b35;margin-right:8px"></i>Upload Product Images</h2>
+      <p>Upload images — they will instantly appear on the main website under the correct category.</p>
+
+      <div class="upload-form">
+        <div class="form-group">
+          <label>Product Name</label>
+          <input type="text" id="productName" placeholder="e.g. ACC Cement 50kg">
+        </div>
+        <div class="form-group">
+          <label>Category</label>
+          <select id="productCat">
+            <option value="Cement">Cement</option>
+            <option value="TMT Steel">TMT Steel</option>
+            <option value="Bricks & Blocks">Bricks &amp; Blocks</option>
+            <option value="Sand & Aggregates">Sand &amp; Aggregates</option>
+            <option value="Pipes & Plumbing">Pipes &amp; Plumbing</option>
+            <option value="Electrical">Electrical</option>
+            <option value="Tools">Tools</option>
+            <option value="Other">Other</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="drop-zone" id="dropZone" onclick="document.getElementById('fileInput').click()">
+        <i class="fa-solid fa-image"></i>
+        <p><strong>Click to browse</strong> or drag &amp; drop images here</p>
+        <p style="font-size:0.8rem;margin-top:6px;color:#666;">PNG, JPG, JPEG, WEBP — Multiple files allowed</p>
+      </div>
+      <input type="file" id="fileInput" accept="image/*" multiple>
+
+      <div class="preview-strip" id="previewStrip"></div>
+      <div class="progress-bar-wrap" id="progressWrap"><div class="progress-bar" id="progressBar"></div></div>
+
+      <div class="upload-actions">
+        <button class="btn-upload" id="uploadBtn" onclick="uploadImages()" disabled>
+          <i class="fa-solid fa-cloud-arrow-up"></i> Upload to Cloud
+        </button>
+      </div>
+    </div>
+
+    <!-- Products -->
+    <div class="products-section">
+      <h2><i class="fa-solid fa-layer-group" style="color:#ff6b35;margin-right:8px"></i>Manage Products</h2>
+      <p>All uploaded products. Changes reflect instantly on the main website.</p>
+      <div class="filter-bar" id="filterBar">
+        <button class="filter-btn active" onclick="filterProducts('All',this)">All</button>
+      </div>
+      <div class="admin-grid" id="adminGrid">
+        <div class="empty-state" style="grid-column:1/-1">
+          <i class="fa-solid fa-box-open"></i>
+          <p>No products uploaded yet.<br>Use the form above to add your first product.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Toast -->
+<div class="toast" id="toast"><i class="fa-solid fa-circle-check"></i><span id="toastMsg"></span></div>
+
+<script>
+// ───────── CONFIG ─────────
+const ADMIN_PASSWORD = 'swastik@admin2024';
+const CLOUDINARY_CLOUD = 'dswastikgrp'; // ← replace with your Cloudinary cloud name
+const UPLOAD_PRESET   = 'swastik_products'; // ← replace with your unsigned preset name
+const STORAGE_KEY     = 'swastik_cloud_products';
+
+// ───────── AUTH ─────────
+function doLogin() {
+  const p = document.getElementById('adminPass').value;
+  if (p === ADMIN_PASSWORD) {
+    document.getElementById('loginScreen').style.display = 'none';
+    document.getElementById('adminPanel').style.display = 'block';
+    sessionStorage.setItem('sw_admin', '1');
+    loadProducts();
+  } else {
+    document.getElementById('loginError').style.display = 'block';
+  }
+}
+function doLogout() {
+  sessionStorage.removeItem('sw_admin');
+  location.reload();
+}
+if (sessionStorage.getItem('sw_admin')) {
+  document.getElementById('loginScreen').style.display = 'none';
+  document.getElementById('adminPanel').style.display = 'block';
+}
+
+// ───────── STORAGE ─────────
+function getProducts() { return JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]'); }
+function saveProducts(arr) { localStorage.setItem(STORAGE_KEY, JSON.stringify(arr)); }
+
+// ───────── DRAG & DROP ─────────
+const dropZone = document.getElementById('dropZone');
+const fileInput = document.getElementById('fileInput');
+let selectedFiles = [];
+
+dropZone.addEventListener('dragover', e => { e.preventDefault(); dropZone.classList.add('drag-over'); });
+dropZone.addEventListener('dragleave', () => dropZone.classList.remove('drag-over'));
+dropZone.addEventListener('drop', e => {
+  e.preventDefault(); dropZone.classList.remove('drag-over');
+  handleFiles([...e.dataTransfer.files]);
+});
+fileInput.addEventListener('change', () => handleFiles([...fileInput.files]));
+
+function handleFiles(files) {
+  files = files.filter(f => f.type.startsWith('image/'));
+  selectedFiles = [...selectedFiles, ...files];
+  renderPreviews();
+  document.getElementById('uploadBtn').disabled = selectedFiles.length === 0;
+}
+
+function renderPreviews() {
+  const strip = document.getElementById('previewStrip');
+  strip.innerHTML = '';
+  selectedFiles.forEach((f, i) => {
+    const url = URL.createObjectURL(f);
+    strip.innerHTML += `<div class="preview-item">
+      <img src="${url}">
+      <button class="remove-prev" onclick="removeFile(${i})"><i class="fa-solid fa-xmark"></i></button>
+    </div>`;
+  });
+}
+function removeFile(i) {
+  selectedFiles.splice(i, 1);
+  renderPreviews();
+  document.getElementById('uploadBtn').disabled = selectedFiles.length === 0;
+}
+
+// ───────── UPLOAD ─────────
+async function uploadImages() {
+  const name = document.getElementById('productName').value.trim();
+  const cat  = document.getElementById('productCat').value;
+  if (!name) { showToast('Enter a product name first!', 'error'); return; }
+  if (selectedFiles.length === 0) { showToast('Select at least one image!', 'error'); return; }
+
+  const btn = document.getElementById('uploadBtn');
+  const prog = document.getElementById('progressWrap');
+  const bar  = document.getElementById('progressBar');
+  btn.disabled = true; btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Uploading...';
+  prog.style.display = 'block';
+
+  const products = getProducts();
+  let done = 0;
+
+  for (const file of selectedFiles) {
+    const formData = new FormData();
+    formData.append('file', file);
+    formData.append('upload_preset', UPLOAD_PRESET);
+    formData.append('folder', 'swastik/products');
+    // Use filename as tag for category sorting
+    formData.append('context', `product_name=${name}|category=${cat}`);
+
+    try {
+      const res = await fetch(`https://api.cloudinary.com/v1_1/${CLOUDINARY_CLOUD}/image/upload`, {
+        method: 'POST', body: formData
+      });
+      const data = await res.json();
+      if (data.secure_url) {
+        products.push({
+          id: data.public_id,
+          name: name,
+          category: cat,
+          url: data.secure_url,
+          uploadedAt: Date.now()
+        });
+      }
+    } catch (e) {
+      showToast('Upload failed for one file. Check Cloudinary config.', 'error');
+    }
+    done++;
+    bar.style.width = Math.round((done / selectedFiles.length) * 100) + '%';
+  }
+
+  saveProducts(products);
+  selectedFiles = [];
+  document.getElementById('previewStrip').innerHTML = '';
+  document.getElementById('productName').value = '';
+  document.getElementById('fileInput').value = '';
+  btn.disabled = false;
+  btn.innerHTML = '<i class="fa-solid fa-cloud-arrow-up"></i> Upload to Cloud';
+  prog.style.display = 'none';
+  bar.style.width = '0%';
+  showToast(`✅ ${done} image(s) uploaded successfully!`, 'success');
+  loadProducts();
+}
+
+// ───────── PRODUCT GRID ─────────
+let currentFilter = 'All';
+function loadProducts() {
+  const products = getProducts();
+  updateStats(products);
+  buildFilterBar(products);
+  renderGrid(products, currentFilter);
+}
+
+function updateStats(products) {
+  document.getElementById('statTotal').textContent = products.length;
+  const cats = new Set(products.map(p => p.category));
+  document.getElementById('statCats').textContent = cats.size;
+  const weekAgo = Date.now() - 7 * 24 * 60 * 60 * 1000;
+  document.getElementById('statNew').textContent = products.filter(p => p.uploadedAt > weekAgo).length;
+}
+
+function buildFilterBar(products) {
+  const cats = ['All', ...new Set(products.map(p => p.category))];
+  const bar = document.getElementById('filterBar');
+  bar.innerHTML = cats.map(c =>
+    `<button class="filter-btn ${c === currentFilter ? 'active' : ''}" onclick="filterProducts('${c}',this)">${c}</button>`
+  ).join('');
+}
+
+function filterProducts(cat, btn) {
+  currentFilter = cat;
+  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  renderGrid(getProducts(), cat);
+}
+
+function renderGrid(products, cat) {
+  const grid = document.getElementById('adminGrid');
+  const filtered = cat === 'All' ? products : products.filter(p => p.category === cat);
+  if (filtered.length === 0) {
+    grid.innerHTML = `<div class="empty-state" style="grid-column:1/-1"><i class="fa-solid fa-box-open"></i><p>No products in this category yet.</p></div>`;
+    return;
+  }
+  grid.innerHTML = filtered.map((p, i) => {
+    const realIdx = products.indexOf(p);
+    return `<div class="admin-product-card">
+      <img src="${p.url}" class="card-img" alt="${p.name}">
+      <div class="card-body">
+        <div class="card-name">${p.name}</div>
+        <div class="card-cat">${p.category}</div>
+        <div class="card-actions">
+          <button class="btn-delete" onclick="deleteProduct(${realIdx})"><i class="fa-solid fa-trash"></i> Delete</button>
+        </div>
+      </div>
+    </div>`;
+  }).join('');
+}
+
+function deleteProduct(i) {
+  if (!confirm('Delete this product from the website?')) return;
+  const products = getProducts();
+  products.splice(i, 1);
+  saveProducts(products);
+  showToast('Product deleted.', 'success');
+  loadProducts();
+}
+
+// ───────── TOAST ─────────
+function showToast(msg, type = 'success') {
+  const t = document.getElementById('toast');
+  const icon = t.querySelector('i');
+  document.getElementById('toastMsg').textContent = msg;
+  t.className = 'toast ' + type + ' show';
+  icon.className = type === 'success' ? 'fa-solid fa-circle-check' : 'fa-solid fa-circle-xmark';
+  setTimeout(() => t.classList.remove('show'), 3500);
+}
+
+// Init
+if (sessionStorage.getItem('sw_admin')) loadProducts();
+</script>
+</body>
+</html>
